@@ -11,13 +11,16 @@ class App extends Component {
     super()
 
     this.state = {
-      inventory: []
+      inventory: [],
+      editProd: []
     }
+    this.updateInventory=this.updateInventory.bind(this)
+    this.editProduct = this.editProduct.bind(this)
   }
 
   componentDidMount() {
     axios
-        .get('api/inventory')
+        .get('/api/inventory')
         .then(res=> {
             this.setState({
                 inventory: res.data
@@ -25,12 +28,27 @@ class App extends Component {
         })
 }
 
+updateInventory(products) {
+  this.setState({
+    inventory: products
+  })
+}
+
+editProduct(product) {
+  this.setState({
+    editProd: product
+  })
+}
+
   render() {
+    console.log(this.state)
     return (
       <div className="App">
        <Header />
-       <Dashboard />
-       <Form />
+       <Dashboard inventory={this.state.inventory}
+       updateInventory={this.updateInventory}
+       />
+       <Form updateInventory={this.updateInventory}/>
       </div>
     )
 }

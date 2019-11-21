@@ -39,6 +39,14 @@ class Form extends Component {
         })
     }
 
+    addInv() {
+        axios 
+            .post('/api/product', {name: this.state.name, price: this.state.price, img: this.state.imgurl})
+            .then(res => {
+                this.props.updateInventory(res.data)
+            })
+    }
+
     render() {
         return (
             <div>
@@ -61,7 +69,7 @@ class Form extends Component {
                     onChange={e => this.handleImgChange(e.target.value)}
                 />
                 <button onClick={e => this.handleCancelTask(e.target.value)}>Cancel</button>
-                <button>Add to Inventory</button>
+                <button onClick={e => this.addInv()}>Add to Inventory</button>
             </div>
         )
     }

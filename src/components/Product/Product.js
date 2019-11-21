@@ -1,5 +1,6 @@
 import React, {Component} from 'react'
 import axios from 'axios'
+import {Link} from 'react-router-dom'
 
 class Product extends Component {
     constructor(props) {
@@ -9,7 +10,7 @@ class Product extends Component {
     render() {
         return (
             <div>
-                Products
+                <Link to='/'> Products </Link>
             </div>
         )
     }
